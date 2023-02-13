@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header.js";
+import SummaryOfPlans from "./components/SummaryOfPlans.js";
+import Schedule from "./components/Schedule.js";
+import Reminder from "./components/Reminder.js";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Header />
+            <div className='w-full h-0.5 md:h-1 mx-3 mt-5 rounded-lg fixed top-5 bg-gradient-to-r from-cyan-500 to-blue-500'></div>
+            <Reminder />
+            <SummaryOfPlans />
+            <Schedule />
+        </>
+    );
 }
 
 export default App;
