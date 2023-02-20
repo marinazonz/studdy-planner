@@ -1,4 +1,4 @@
-import StudyPlan from "./studyPlan";
+import PlanForm from "./PlanForm";
 
 const Dummy_Tasks = [
     {
@@ -28,7 +28,7 @@ const SummaryOfPlans = () => {
             </h1>
             <ul className='flex flex-wrap flex-col justify-around max-h-40 md:max-h-60'>
                 {Dummy_Tasks.map((task) => (
-                    <StudyPlan
+                    <PlanForm
                         key={task.id}
                         id={task.id}
                         title={task.title}
