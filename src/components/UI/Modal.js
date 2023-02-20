@@ -2,12 +2,12 @@ import ReactDOM from "react-dom";
 
 const Backdrop = () => {
     return (
-        <div className='absolute bg-slate-800 w-full h-full opacity-40 z-30'></div>
+        <div className='absolute bg-slate-600 inset-y-0 w-full h-screen opacity-80 z-60'></div>
     );
 };
 const ModalOverlay = (props) => {
     return (
-        <div className='h-80 w-1/2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 absolute top-20 left-1/3 self-center z-40'>
+        <div className='h-4/5 w-10/12 md:h-4/5 md:w-8/12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 absolute top-20 left-10 md:left-48 self-center z-40'>
             <div>{props.children}</div>
         </div>
     );
