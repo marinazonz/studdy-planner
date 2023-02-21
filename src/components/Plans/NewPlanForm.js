@@ -1,9 +1,34 @@
+import { useRef, useState } from "react";
+
 import Modal from "../UI/Modal";
 
-const NewPlanForm = () => {
+const NewPlanForm = (props) => {
+    const [choosedCategory, setChoosedCategory] = useState("private");
+
+    const titleInputRef = useRef();
+    const startDateInputRef = useRef();
+    const deadlineInputRef = useRef();
+
+    const submitFormHandler = (e) => {
+        e.preventDefault();
+
+        const enteredTitle = titleInputRef.current.value;
+        const enteredStartDate = startDateInputRef.current.value;
+        const enteredDeadline = deadlineInputRef.current.value;
+
+        const newFormData = {
+            title: enteredTitle,
+            importance: choosedCategory,
+            startDate: enteredStartDate,
+            deadlineDate: enteredDeadline,
+        };
+    };
     return (
         <Modal>
-            <form className='font-sans text-slate-800 md:text-xl font-medium'>
+            <form
+                className='font-sans text-slate-800 md:text-xl font-medium'
+                onSubmit={submitFormHandler}
+            >
                 <p className='my-2 text-center'>
                     Add new plan in your schedule
                 </p>
@@ -12,6 +37,7 @@ const NewPlanForm = () => {
                     <input
                         type='text'
                         required
+                        ref={titleInputRef}
                         className='rounded-md shadow-md indent-1 bg-zinc-100 mt-1 md:h-10 focus:outline-2 focus:outline-cyan-500/75'
                     />
                 </div>
@@ -25,6 +51,7 @@ const NewPlanForm = () => {
                             type='radio'
                             value='study'
                             name='types'
+                            onChange={() => setChoosedCategory("study")}
                             class='accent-pink-500 h-3 w-3 md:h-4 md:w-4 bg-zinc-100 border-none self-center'
                         />
                     </div>
@@ -37,6 +64,7 @@ const NewPlanForm = () => {
                             type='radio'
                             value='sport'
                             name='types'
+                            onChange={() => setChoosedCategory("sport")}
                             class='accent-blue-600 h-3 w-3 md:h-4 md:w-4 bg-zinc-100 border-none self-center'
                         />
                     </div>
@@ -49,6 +77,7 @@ const NewPlanForm = () => {
                             type='radio'
                             value='private'
                             name='types'
+                            onChange={() => setChoosedCategory("private")}
                             class='accent-orange-600 h-3 w-3 md:h-4 md:w-4 bg-zinc-100 border-none self-center'
                         />
                     </div>
@@ -57,7 +86,7 @@ const NewPlanForm = () => {
                     <label className='mr-5'>Start</label>
                     <input
                         type='datetime-local'
-                        required
+                        ref={startDateInputRef}
                         className='rounded-md shadow-md indent-1 bg-zinc-100 mt-1 md:h-10 focus:outline-2 focus:outline-cyan-500/75'
                     />
                 </div>
@@ -65,7 +94,7 @@ const NewPlanForm = () => {
                     <label className='mr-5'>Deadline</label>
                     <input
                         type='datetime-local'
-                        required
+                        ref={deadlineInputRef}
                         className='rounded-md shadow-md indent-1 bg-zinc-100 mt-1 md:h-10 focus:outline-2 focus:outline-cyan-500/75'
                     />
                 </div>

@@ -5,13 +5,13 @@ const Dummy_Tasks = [
         id: "1",
         title: "Todo this",
         importance: "not importante",
-        deadLine: "",
+        deadlineDate: "",
     },
     {
         id: "2",
         title: "Todo that",
         importance: "importante",
-        deadLine: "end of fabruary",
+        deadlineDate: "end of fabruary",
     },
 ];
 
@@ -33,7 +33,8 @@ const SummaryOfPlans = () => {
                         id={task.id}
                         title={task.title}
                         importance={task.importance}
-                        deadLine={task.deadLine}
+                        startDate={task.startDate}
+                        deadlineDate={task.deadlineDate}
                     />
                 ))}
             </ul>
