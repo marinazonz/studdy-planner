@@ -32,9 +32,14 @@ function App() {
                 onClickBurger={openReminderHandler}
                 onOpenNewForm={openNewFormHandler}
             />
-            <div className='w-full h-0.5 md:h-1 mx-3 mt-5 rounded-lg fixed top-5 bg-gradient-to-r from-cyan-500 to-blue-500'></div>
+            <div className='w-full h-0.5 md:h-1 mx-3 mt-5 rounded-lg fixed top-5 bg-gradient-to-r from-cyan-500 to-blue-500 z-30'></div>
             {reminderIsShown && <Reminder />}
-            {newFormIsOpen && <NewPlanForm onSubmitNewForm={newFormHandler} />}
+            {newFormIsOpen && (
+                <NewPlanForm
+                    onSubmitNewForm={newFormHandler}
+                    onCloseNewForm={() => setNewFormIsOpen(false)}
+                />
+            )}
             {popupIsOpen && (
                 <Popup onClose={() => setPopupIsOpen(!popupIsOpen)} />
             )}

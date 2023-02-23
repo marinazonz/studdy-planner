@@ -33,6 +33,7 @@ const NewPlanForm = (props) => {
         const enteredDeadline = deadlineInputRef.current.value;
 
         const newFormData = {
+            id: Math.random(),
             title: enteredTitle,
             importance: choosedCategory,
             startDate: enteredStartDate,
@@ -45,9 +46,9 @@ const NewPlanForm = (props) => {
     };
 
     return (
-        <Modal>
+        <Modal onClose={props.onCloseNewForm}>
             <form
-                className='font-sans text-slate-800 md:text-xl font-medium'
+                className='font-sans text-slate-800 sm:text-xl font-medium'
                 onSubmit={submitFormHandler}
             >
                 <p className='my-2 text-center'>
@@ -59,10 +60,10 @@ const NewPlanForm = (props) => {
                         type='text'
                         required
                         ref={titleInputRef}
-                        className='rounded-md shadow-md indent-1 bg-zinc-100 mt-1 md:h-10 focus:outline-2 focus:outline-cyan-500/75'
+                        className='rounded-md shadow-md indent-1 bg-zinc-100 mt-1 sm:h-10 focus:outline-2 focus:outline-cyan-500/75'
                     />
                 </div>
-                <div className='flex flex-col md:flex-row mx-5 justify-between mb-3 text-sm md:text-xl md:mb-5 md:max-w-lg font-normal'>
+                <div className='flex flex-col md:flex-row mx-5 justify-between mb-3 text-sm sm:text-xl md:mb-5 md:max-w-lg font-normal'>
                     <div className='flex'>
                         <label for='study' className='mr-5 self-center'>
                             Study
@@ -119,8 +120,14 @@ const NewPlanForm = (props) => {
                         className='rounded-md shadow-md indent-1 bg-zinc-100 mt-1 md:h-10 focus:outline-2 focus:outline-cyan-500/75'
                     />
                 </div>
-                <button className='absolute right-20 mt-10 w-32 h-10 rounded-lg shadow-md bg-blue-300 font-semibold'>
+                <button className='transition-all absolute right-20 mt-7 w-32 h-10 rounded-lg shadow-md bg-blue-300 font-semibold hover:text-lg hover:bg-blue-300/70 hover:border md:hover:text-2xl'>
                     Submit
+                </button>
+                <button
+                    className='transition-all absolute right-20 mt-20 w-32 h-10 rounded-lg shadow-md bg-indigo-300 font-semibold hover:text-lg hover:bg-indigo-300/70 hover:border md:hover:text-2xl'
+                    onClick={props.onCloseNewForm}
+                >
+                    Close
                 </button>
             </form>
         </Modal>

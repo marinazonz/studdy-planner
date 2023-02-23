@@ -1,33 +1,53 @@
+import { useState, useEffect, useCallback } from "react";
+
 import PlanForm from "./PlanForm";
 
-const Dummy_Tasks = [
-    {
-        id: "1",
-        title: "Todo this",
-        importance: "not importante",
-        deadlineDate: "",
-    },
-    {
-        id: "2",
-        title: "Todo that",
-        importance: "importante",
-        deadlineDate: "end of fabruary",
-    },
-];
-
 const SummaryOfPlans = () => {
-    //here will be the option of adding a new plan of study(task, what you want to do/to study)
-    //option to delete the task
-    //option to add deadline for the task
-    //option fo sorting tasks
-    //like todo list, what later will be converted to the calendar -> notifications?!
+    const [isLoading, setIsLoading] = useState(false);
+    const [plans, setPlans] = useState([]);
+
+    //loading functuanality (chanhe h1)
+    //spans of importance in every item depend on the data(study/sport)
+    //to delete items
+
+    const fetchPlans = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const response = await fetch(
+                "https://myprojectname-8bdfe-default-rtdb.firebaseio.com/plans.json"
+            );
+            if (!response.ok) {
+                console.log("Something went wrong");
+                throw new Error("Something went wrong");
+            }
+
+            const data = await response.json();
+
+            const allPlansData = [];
+            for (const key in data) {
+                const plan = {
+                    id: key,
+                    ...data[key],
+                };
+
+                allPlansData.push(plan);
+            }
+            setPlans(allPlansData);
+        } catch (error) {}
+        setIsLoading(false);
+    }, []);
+
+    useEffect(() => {
+        fetchPlans();
+    }, [fetchPlans, plans]);
+
     return (
         <section className='font-sans text-slate-800 mt-16'>
             <h1 className='text-center mb-5 font-medium'>
-                The list of studying tasks
+                The list of tasks is empty
             </h1>
-            <ul className='flex flex-wrap flex-col justify-around max-h-40 md:max-h-60'>
-                {Dummy_Tasks.map((task) => (
+            <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 grid-flow-row w-full'>
+                {plans.map((task) => (
                     <PlanForm
                         key={task.id}
                         id={task.id}
