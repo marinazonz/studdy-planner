@@ -9,6 +9,22 @@ const NewPlanForm = (props) => {
     const startDateInputRef = useRef();
     const deadlineInputRef = useRef();
 
+    const postData = (data) => {
+        fetch(
+            "https://myprojectname-8bdfe-default-rtdb.firebaseio.com/plans.json",
+            {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        ).then(() => {
+            console.log("Success");
+            //add popup of success
+        });
+    };
+
     const submitFormHandler = (e) => {
         e.preventDefault();
 
@@ -22,7 +38,12 @@ const NewPlanForm = (props) => {
             startDate: enteredStartDate,
             deadlineDate: enteredDeadline,
         };
+
+        postData(newFormData);
+
+        props.onSubmitNewForm(true);
     };
+
     return (
         <Modal>
             <form
