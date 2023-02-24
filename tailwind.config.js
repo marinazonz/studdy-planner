@@ -2,7 +2,13 @@
 module.exports = {
     content: ["./src/**/*.{html,js}"],
     theme: {
-        extend: { fontFamily: { ubuntu: ["Ubuntu", "sans-serif"] } },
+        extend: {
+            fontFamily: { ubuntu: ["Ubuntu", "sans-serif"] },
+            content: {
+                done: "✔️",
+                close: "x",
+            },
+        },
     },
     plugins: [],
 };
