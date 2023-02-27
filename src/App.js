@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import Header from "./components/Header/Header.js";
 import SummaryOfPlans from "./components/Plans/SummaryOfPlans.js";
@@ -8,13 +9,10 @@ import NewPlanForm from "./components/Plans/NewPlanForm.js";
 import Popup from "./components/UI/Popup.js";
 
 function App() {
-    const [reminderIsShown, setReminderIsShown] = useState(false);
     const [newFormIsOpen, setNewFormIsOpen] = useState(false);
     const [popupIsOpen, setPopupIsOpen] = useState(false);
 
-    const openReminderHandler = () => {
-        setReminderIsShown(!reminderIsShown);
-    };
+    const sideBarIsShown = useSelector((state) => state.ui.sideBarIsVisible);
 
     const openNewFormHandler = () => {
         setNewFormIsOpen(true);
@@ -28,12 +26,9 @@ function App() {
 
     return (
         <>
-            <Header
-                onClickBurger={openReminderHandler}
-                onOpenNewForm={openNewFormHandler}
-            />
+            <Header onOpenNewForm={openNewFormHandler} />
             <div className='w-full h-0.5 md:h-1 mx-3 mt-5 rounded-lg fixed top-5 bg-gradient-to-r from-cyan-500 to-blue-500 z-30'></div>
-            {reminderIsShown && <Reminder />}
+            {sideBarIsShown && <Reminder />}
             {newFormIsOpen && (
                 <NewPlanForm
                     onSubmitNewForm={newFormHandler}

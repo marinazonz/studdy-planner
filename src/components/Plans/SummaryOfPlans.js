@@ -65,15 +65,13 @@ const SummaryOfPlans = () => {
     //     );
     // }
 
-    const closePlanHandler = (event) => {
+    const closePlanHandler = (id) => {
         //delete item from the array
-        const deletingPlan = plans.map((item) => {
-            // return item.id === target.id;
-        });
-        console.log();
-
+        // const deletingPlan = plans.map((item) => {
+        //     // return item.id === target.id;
+        // });
+        // console.log();
         //REDUX!
-
         //delete item from the data-base
         //put deleted item in a new array 'archive' (later show it as a list of already done in the side-bar)
     };

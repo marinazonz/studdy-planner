@@ -1,4 +1,15 @@
+import { useDispatch } from "react-redux";
+import { planActions } from "../../store/plan-slice";
+
 const PlanForm = (props) => {
+    const dispatch = useDispatch();
+
+    //CHECKED THIS ONE!
+    const deletePlanHandler = (id) => {
+        dispatch(planActions.removePlan(id));
+        console.log("clicked Close");
+    };
+
     let spanDefault = (
         <div className='flex border border-pink-500 w-3.5 h-3.5 rounded absolute ml-1 mt-2 z-10'>
             <span className='rounded-full w-2 h-2 bg-pink-500 m-0.5'></span>
@@ -26,7 +37,7 @@ const PlanForm = (props) => {
             {props.deadLine && <div> 🔥{props.deadLine}</div>}
             <button
                 className='rounded-lg w-9 h-5 place-self-end absolute top-1.5 bg-slate-300 mr-1 hover:bg-slate-400 font-semibold hover:font-medium'
-                onClick={props.onClose}
+                onClick={deletePlanHandler}
             >
                 X
             </button>

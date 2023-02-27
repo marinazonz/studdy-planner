@@ -10,14 +10,14 @@ const Header = (props) => {
                 <nav className='h-full max-w-[16rem] md:max-w-lg flex flex-wrap justify-around list-none content-center'>
                     <li className='mr-4'>Enter</li>
                     <li
-                        className='hover:transition-all duration-200 cursor-pointer hover:border-2 border-cyan-500 rounded-lg p-1 hover:text-sm md:hover:text-base'
+                        className='hover:transition-all duration-200 cursor-pointer hover:border-2 border-cyan-500 rounded-lg p-1 hover:text-sm md:hover:text-lg'
                         onClick={props.onOpenNewForm}
                     >
                         Create new plan
                     </li>
                 </nav>
             </header>
-            <BurgerBt onClickBurger={props.onClickBurger} />
+            <BurgerBt />
         </>
     );
 };
