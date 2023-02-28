@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import Header from "./components/Header/Header.js";
 import SummaryOfPlans from "./components/Plans/SummaryOfPlans.js";
@@ -7,12 +7,15 @@ import Schedule from "./components/Schedule.js";
 import Reminder from "./components/Reminder.js";
 import NewPlanForm from "./components/Plans/NewPlanForm.js";
 import Popup from "./components/UI/Popup.js";
+import { fetchPlanData, sendPlanData } from "./store/fetch-slice.js";
 
 function App() {
+    const dispatch = useDispatch();
     const [newFormIsOpen, setNewFormIsOpen] = useState(false);
     const [popupIsOpen, setPopupIsOpen] = useState(false);
 
     const sideBarIsShown = useSelector((state) => state.ui.sideBarIsVisible);
+    const plans = useSelector((state) => state.plan);
 
     const openNewFormHandler = () => {
         setNewFormIsOpen(true);
@@ -23,6 +26,16 @@ function App() {
         setNewFormIsOpen(false);
         setPopupIsOpen(!popupIsOpen);
     };
+
+    useEffect(() => {
+        dispatch(fetchPlanData());
+        //add dependency for updating when add a new plan
+    }, []);
+    useEffect(() => {
+        if (plans.changed) {
+            dispatch(sendPlanData(plans.plans));
+        }
+    }, [plans]);
 
     return (
         <>

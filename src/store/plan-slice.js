@@ -1,20 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const planSlice = createSlice({
-    name: "plans",
+    name: "plan",
     initialState: {
         plans: [],
         totalPlansForDay: 0,
+        changed: false,
     },
     reducers: {
+        replacePlansInfo(state, action) {
+            state.plans = action.payload.plans;
+        },
         addPlan(state, action) {},
         removePlan(state, action) {
             const id = action.payload;
-            const existingPlan = state.plans.find((item) => item.id === id);
-            if (existingPlan) {
-                state.plans = state.plans.filter((item) => item.id !== id);
-                console.log(existingPlan);
-            }
+            state.plans = state.plans.filter((item) => item.id !== id);
+            state.changed = true;
         },
     },
 });
