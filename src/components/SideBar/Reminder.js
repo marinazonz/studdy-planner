@@ -1,4 +1,10 @@
-const Reminder = () => {
+import { useSelector } from "react-redux";
+
+import ArchivedItem from "../SideBar/ArchivedItem";
+
+const Reminder = (props) => {
+    const archivedArray = useSelector((state) => state.plan.archived);
+
     return (
         <section className='font-sans text-slate-800 h-full w-32 md:max-w-5xl md:w-96 md:text-xl bg-slate-300 font-bold text-base absolute right-0 inset-y-0 flex transition ease-in-out duration-700 opacity-80 z-40'>
             <div className='w-0.5 md:w-1 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 mt-5 mx-2'></div>
@@ -9,6 +15,15 @@ const Reminder = () => {
                 <ul className='mt-4 flex flex-col justify-start flex-wrap content-start '>
                     <li className='md:mb-2'>To do this</li>
                     <li>To do that</li>
+                </ul>
+                <ul className='mt-32'>
+                    {archivedArray.map((item) => (
+                        <ArchivedItem
+                            key={item.id}
+                            id={item.id}
+                            title={item.title}
+                        />
+                    ))}
                 </ul>
             </div>
         </section>

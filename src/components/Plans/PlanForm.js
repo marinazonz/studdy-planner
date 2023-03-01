@@ -6,6 +6,7 @@ const PlanForm = (props) => {
     const { title, importance, deadline, id } = props;
 
     const removePlanHandler = () => {
+        dispatch(planActions.addToArchive(id));
         dispatch(planActions.removePlan(id));
         //put deleted item in a new array 'archive' (later show it as a list of already done in the side-bar)
     };

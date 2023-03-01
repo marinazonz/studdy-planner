@@ -48,8 +48,11 @@ export const sendPlanData = (plan) => {
         };
         try {
             await sendRequest();
+            //add popup of success
         } catch (error) {
             console.log(error.message);
         }
     };
 };
+
+//add popup with success
