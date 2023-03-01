@@ -1,14 +1,15 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { planActions } from "../../store/plan-slice";
+import { sendArchivedData } from "../../store/fetch-slice";
 
 const PlanForm = (props) => {
     const dispatch = useDispatch();
+    const plans = useSelector((state) => state.plan);
     const { title, importance, deadline, id } = props;
 
     const removePlanHandler = () => {
         dispatch(planActions.addToArchive(id));
         dispatch(planActions.removePlan(id));
-        //put deleted item in a new array 'archive' (later show it as a list of already done in the side-bar)
     };
 
     let spanDefault = (

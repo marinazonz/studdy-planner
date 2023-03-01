@@ -7,10 +7,14 @@ const planSlice = createSlice({
         archived: [],
         totalPlansForDay: 0,
         changed: false,
+        archivedChanged: false,
     },
     reducers: {
         replacePlansInfo(state, action) {
             state.plans = action.payload.plans;
+        },
+        replaceArchivedInfo(state, action) {
+            state.archived = action.payload.archived;
         },
         addPlan(state, action) {
             const newItem = action.payload;
@@ -34,16 +38,20 @@ const planSlice = createSlice({
         },
         addToArchive(state, action) {
             const id = action.payload;
+            let date = new Date();
+            const day = date.toDateString();
+            const month = date.getMonth();
             state.plans.map((item) => {
                 if (item.id === id) {
                     state.archived.push({
                         id: item.id,
                         title: item.title,
                         importance: item.importance,
+                        closeddate: day,
                     });
                 }
             });
-            console.log(state.archived);
+            state.archivedChanged = true;
         },
     },
 });

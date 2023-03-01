@@ -7,7 +7,12 @@ import Schedule from "./components/Schedule.js";
 import Reminder from "./components/SideBar/Reminder.js";
 import NewPlanForm from "./components/Plans/NewPlanForm.js";
 import Popup from "./components/UI/Popup.js";
-import { fetchPlanData, sendPlanData } from "./store/fetch-slice.js";
+import {
+    fetchPlanData,
+    sendPlanData,
+    fetchArchivedData,
+    sendArchivedData,
+} from "./store/fetch-slice.js";
 import { uiActions } from "./store/ui-slice.js";
 
 let isInitial = true;
@@ -19,9 +24,11 @@ function App() {
     const newFormIsShown = useSelector((state) => state.ui.modalIsShown);
     const popupIsShown = useSelector((state) => state.ui.popupIsOpened);
     const plans = useSelector((state) => state.plan);
+    const archivedArray = useSelector((state) => state.plan.archived);
 
     useEffect(() => {
         dispatch(fetchPlanData());
+        dispatch(fetchArchivedData());
     }, [dispatch]);
     useEffect(() => {
         if (isInitial) {
@@ -30,6 +37,9 @@ function App() {
         }
         if (plans.changed) {
             dispatch(sendPlanData(plans.plans));
+        }
+        if (plans.archivedChanged) {
+            dispatch(sendArchivedData(plans.archived));
         }
     }, [dispatch, plans]);
 
