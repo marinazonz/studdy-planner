@@ -61,7 +61,7 @@ function App() {
                 <Popup onClose={() => dispatch(uiActions.setPopupIsOpened())} />
             )}
             <SummaryOfPlans />
-            <Schedule />
+            <Schedule props={plans} />
         </>
     );
 }
