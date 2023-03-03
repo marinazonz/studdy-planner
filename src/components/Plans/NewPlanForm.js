@@ -5,6 +5,9 @@ import { uiActions } from "../../store/ui-slice";
 import { planActions } from "../../store/plan-slice";
 import Modal from "../UI/Modal";
 
+//let today = Date.now();
+let today = new Date().toDateString();
+
 const NewPlanForm = (props) => {
     const dispatch = useDispatch();
     const [choosedCategory, setChoosedCategory] = useState("private");
@@ -17,8 +20,14 @@ const NewPlanForm = (props) => {
         e.preventDefault();
 
         const enteredTitle = titleInputRef.current.value;
-        const enteredStartDate = startDateInputRef.current.value;
+        let enteredStartDate = startDateInputRef.current.value;
         const enteredDeadline = deadlineInputRef.current.value;
+
+        if (enteredStartDate === "") {
+            enteredStartDate = today;
+        }
+
+        console.log(enteredStartDate);
 
         const newFormData = {
             id: Math.random(),
@@ -96,7 +105,7 @@ const NewPlanForm = (props) => {
                 <div className='flex flex-col w-10/12 ml-7 justify-start mb-5'>
                     <label className='mr-5'>Start</label>
                     <input
-                        type='datetime-local'
+                        type='date'
                         ref={startDateInputRef}
                         className='rounded-md shadow-md indent-1 bg-zinc-100 mt-1 md:h-10 focus:outline-2 focus:outline-cyan-500/75'
                     />
@@ -104,7 +113,7 @@ const NewPlanForm = (props) => {
                 <div className='flex flex-col w-10/12 ml-7 justify-start mb-5'>
                     <label className='mr-5'>Deadline</label>
                     <input
-                        type='datetime-local'
+                        type='date'
                         ref={deadlineInputRef}
                         className='rounded-md shadow-md indent-1 bg-zinc-100 mt-1 md:h-10 focus:outline-2 focus:outline-cyan-500/75'
                     />

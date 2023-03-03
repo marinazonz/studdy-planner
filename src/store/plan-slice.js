@@ -43,7 +43,7 @@ const planSlice = createSlice({
             const month = date.getMonth();
             state.plans.map((item) => {
                 if (item.id === id) {
-                    state.archived.push({
+                    state.archived.unshift({
                         id: item.id,
                         title: item.title,
                         importance: item.importance,
