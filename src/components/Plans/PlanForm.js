@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { planActions } from "../../store/plan-slice";
-import { sendArchivedData } from "../../store/fetch-slice";
 
 const PlanForm = (props) => {
     const dispatch = useDispatch();
-    const plans = useSelector((state) => state.plan);
-    const { title, importance, startDate, deadline, id } = props;
+    const { title, importance, startDate, deadlineDate, id } = props;
+
+    const start = new Date(startDate).toDateString();
 
     const removePlanHandler = () => {
         dispatch(planActions.addToArchive(id));
@@ -36,8 +36,7 @@ const PlanForm = (props) => {
         <li className='w-64 text-center mb-3 border-2 border-cyan-400 rounded-lg flex flex-col flex-wrap flex-grow justify-between shadow-md relative'>
             <h2 className='font-medium text-lg'>{title}</h2>
             {spanDefault}
-            {startDate}
-            {deadline && <div> 🔥{deadline}</div>}
+            {start}
             <button
                 className='rounded-lg w-9 h-5 place-self-end absolute top-1.5 bg-slate-300 mr-1 hover:bg-slate-400 font-semibold hover:font-medium'
                 onClick={removePlanHandler}

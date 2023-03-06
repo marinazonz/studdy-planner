@@ -5,9 +5,13 @@ import { uiActions } from "../../store/ui-slice";
 import { planActions } from "../../store/plan-slice";
 import Modal from "../UI/Modal";
 
-//let today = Date.now();
 const newDate = Date.now();
 let today = new Date(newDate).toDateString();
+
+console.log(today);
+
+let theStartDate;
+let theEndDate;
 
 const NewPlanForm = (props) => {
     const dispatch = useDispatch();
@@ -21,23 +25,27 @@ const NewPlanForm = (props) => {
         e.preventDefault();
 
         const enteredTitle = titleInputRef.current.value;
-        let enteredStartDate = startDateInputRef.current.value;
+        const enteredStartDate = startDateInputRef.current.value;
         const enteredDeadline = deadlineInputRef.current.value;
 
         if (enteredStartDate === "") {
-            enteredStartDate = today;
+            theStartDate = today;
         } else {
-            enteredStartDate = new Date(enteredStartDate).toDateString();
+            theStartDate = new Date(enteredStartDate).toDateString();
         }
 
-        console.log(enteredStartDate);
+        if (enteredDeadline === "") {
+            theEndDate = today;
+        } else {
+            theEndDate = new Date(enteredDeadline).toDateString();
+        }
 
         const newFormData = {
             id: Math.random(),
             title: enteredTitle,
             importance: choosedCategory,
-            startDate: enteredStartDate,
-            deadlineDate: enteredDeadline,
+            startDate: theStartDate,
+            deadlineDate: theEndDate,
         };
 
         dispatch(planActions.addPlan(newFormData));

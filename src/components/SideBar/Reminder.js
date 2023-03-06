@@ -26,7 +26,6 @@ const Reminder = (props) => {
                     <h2 className='mt-10'>Plan for today</h2>
                     <ul className='mt-4 flex flex-col justi//fy-start flex-wrap content-start '>
                         {plansArray.map((item) => {
-                            console.log(today);
                             if (item.startDate === today) {
                                 return (
                                     <TodoTodayItem
