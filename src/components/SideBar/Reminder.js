@@ -5,7 +5,9 @@ import { uiActions } from "../../store/ui-slice";
 import ArchivedItem from "../SideBar/ArchivedItem";
 import TodoTodayItem from "./todoTodayItem";
 
-let today = new Date().toDateString();
+//let today = new Date().toDateString();
+const newDate = Date.now();
+let today = new Date(newDate).toDateString();
 
 const Reminder = (props) => {
     const dispatch = useDispatch();
@@ -22,9 +24,9 @@ const Reminder = (props) => {
                 <div className='w-0.5 md:w-1 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 mt-5 mx-2'></div>
                 <div className='flex flex-col w-full mr-3'>
                     <h2 className='mt-10'>Plan for today</h2>
-                    <ul className='mt-4 flex flex-col justify-start flex-wrap content-start '>
+                    <ul className='mt-4 flex flex-col justi//fy-start flex-wrap content-start '>
                         {plansArray.map((item) => {
-                            console.log(item.startDate === today);
+                            console.log(today);
                             if (item.startDate === today) {
                                 return (
                                     <TodoTodayItem

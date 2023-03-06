@@ -32,8 +32,6 @@ const Schedule = (props) => {
         },
     ]);
 
-    console.log(listOfEvents);
-
     return (
         <section>
             <h3>Calendar</h3>

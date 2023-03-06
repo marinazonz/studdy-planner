@@ -6,7 +6,8 @@ import { planActions } from "../../store/plan-slice";
 import Modal from "../UI/Modal";
 
 //let today = Date.now();
-let today = new Date().toDateString();
+const newDate = Date.now();
+let today = new Date(newDate).toDateString();
 
 const NewPlanForm = (props) => {
     const dispatch = useDispatch();
@@ -25,6 +26,8 @@ const NewPlanForm = (props) => {
 
         if (enteredStartDate === "") {
             enteredStartDate = today;
+        } else {
+            enteredStartDate = new Date(enteredStartDate).toDateString();
         }
 
         console.log(enteredStartDate);
