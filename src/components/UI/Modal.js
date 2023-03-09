@@ -3,15 +3,17 @@ import ReactDOM from "react-dom";
 const Backdrop = (props) => {
     return (
         <div
-            className='absolute bg-slate-600 inset-y-0 w-full h-screen opacity-80 z-40'
+            className='fixed bg-slate-600/80 inset-0 p-5 z-10'
             onClick={props.onClose}
-        ></div>
+        />
     );
 };
 const ModalOverlay = (props) => {
     return (
-        <div className='h-4/5 w-10/12 md:w-8/12 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 absolute top-20 left-10 md:left-48 self-center z-40'>
-            <div>{props.children}</div>
+        <div className='flex w-full fixed justify-center z-10 pointer-events-none'>
+            <div className='rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 w-full flex overflow-scroll justify-center self-center sm:max-w-xl p-7 pointer-events-auto'>
+                {props.children}
+            </div>
         </div>
     );
 };
@@ -22,7 +24,7 @@ const Modal = (props) => {
     return (
         <>
             {ReactDOM.createPortal(
-                <Backdrop onClose={props.onClose} />,
+                <Backdrop onClose={props.onClose}></Backdrop>,
                 forPortal
             )}
             {ReactDOM.createPortal(

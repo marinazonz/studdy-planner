@@ -33,12 +33,12 @@ const PlanForm = (props) => {
     }
 
     return (
-        <li className='w-64 text-center mb-3 border-2 border-cyan-400 rounded-lg flex flex-col flex-wrap flex-grow justify-between shadow-md relative'>
+        <li className='w-64 text-center mb-3 border-2 border-fuchsia-300 rounded-lg flex flex-col flex-wrap flex-grow justify-between shadow-md relative'>
             <h2 className='font-medium text-lg'>{title}</h2>
             {spanDefault}
             {start}
             <button
-                className='rounded-lg w-9 h-5 place-self-end absolute top-1.5 bg-slate-300 mr-1 hover:bg-slate-400 font-semibold hover:font-medium'
+                className='rounded-lg w-9 h-5 place-self-end absolute top-1.5 bg-slate-200 mr-1 hover:bg-pink-300 font-semibold hover:font-medium'
                 onClick={removePlanHandler}
             >
                 X

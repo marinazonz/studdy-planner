@@ -1,7 +1,7 @@
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { useSelector } from "react-redux";
 import format from "date-fns/format";
-import parseJSON from "date-fns/parse";
+import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -10,7 +10,7 @@ const locales = { "en-GB": require("date-fns/locale/en-GB") };
 
 const localizer = dateFnsLocalizer({
     format,
-    parseJSON,
+    parse,
     startOfWeek: () => startOfWeek(new Date(), { weekStartsOn: 1 }),
     getDay,
     locales,

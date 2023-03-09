@@ -40,7 +40,6 @@ const planSlice = createSlice({
             const id = action.payload;
             let date = new Date();
             const day = date.toDateString();
-            const month = date.getMonth();
             state.plans.map((item) => {
                 if (item.id === id) {
                     state.archived.unshift({
